@@ -11,7 +11,7 @@ class Produto:
         self.janela.title("App Gestor de Produtos")
         self.janela.resizable(1, 1)
         self.janela.wm_iconbitmap("C:\\Users\\KorpuZ\\Desktop\\Gestor Produtos\\recursos\\icon.ico.ico")
-        frame = LabelFrame(self.janela, text="Registar um novo Produto")
+        frame = LabelFrame(self.janela, text="Registar um novo Produto", font = ("Calibri", 11, "bold"))
         frame.grid(row=0, column=0, columnspan=3, pady=20)
 
         self.etiqueta_nome = Label(frame, text="Nome: ")
@@ -25,7 +25,9 @@ class Produto:
         self.preco = Entry(frame)
         self.preco.grid(row=2, column=1)
 
-        self.botao_adicionar = ttk.Button(frame, text="Guardar Produto", command=self.add_produto)
+        s = ttk.Style()
+        s.configure("my.TButton", font = ("Calibri", 14, "bold"))
+        self.botao_adicionar = ttk.Button(frame, text="Guardar Produto", command=self.add_produto, style = "my.TButton")
         self.botao_adicionar.grid(row=3, columnspan=2, sticky=W + E)
 
         self.mensagem = Label(text="", fg="red")
@@ -41,9 +43,11 @@ class Produto:
         self.tabela.heading("#0", text="Nome: ", anchor=CENTER)
         self.tabela.heading("#1", text="Preço: ", anchor=CENTER)
 
-        botao_eliminar = ttk.Button(text="ELIMINAR", command=self.del_produto)
+        s = ttk.Style()
+        s.configure("my.TButton", font = ("Calibri", 14, "bold"))
+        botao_eliminar = ttk.Button(text="ELIMINAR", command=self.del_produto, style = "my.TButton")
         botao_eliminar.grid(row=5, column=0, sticky=W + E)
-        botao_editar = ttk.Button(text="EDITAR", command=self.edit_produto)
+        botao_editar = ttk.Button(text="EDITAR", command=self.edit_produto, style = "my.TButton")
         botao_editar.grid(row=5, column=1, sticky=W + E)
 
         self.get_produtos()
@@ -118,10 +122,10 @@ class Produto:
                 self.janela_editar.resizable(1, 1)
                 self.janela_editar.wm_iconbitmap("C:\\Users\\KorpuZ\\Desktop\\Gestor Produtos\\recursos\\icon.ico.ico")
 
-                título = Label(self.janela_editar, text='Edição de Produtos', font=('Calibri', 50, 'bold'))
+                título = Label(self.janela_editar, text='Edição de Produtos', font=('Juice iTc', 50, 'bold'))
                 título.grid(column=0, row=0)
 
-                frame_ep = LabelFrame(self.janela_editar, text="Editar o seguinte")
+                frame_ep = LabelFrame(self.janela_editar, text="Editar o seguinte Produto", font = ("Juice iTc", 15, "bold"))
                 frame_ep.grid(row=1, column=0, columnspan=20, pady=20)
 
                 self.etiqueta_nome_antigo = Label(frame_ep, text="Nome antigo: ")
@@ -153,9 +157,11 @@ class Produto:
                 self.input_preco_novo = Entry(frame_ep)
                 self.input_preco_novo.grid(row=5, column=1)
 
+                s = ttk.Style()
+                s.configure("my.TButton", font = ("Calibri", 14, "bold"))
                 self.botao_atualizar = ttk.Button(
                     frame_ep,
-                    text="Atualizar Produto",
+                    text="Atualizar Produto", style = "my.TButton" ,
                     command=lambda: self.atualizar_produtos(
                         self.input_nome_antigo.get(),
                         self.input_nome_novo.get(),
